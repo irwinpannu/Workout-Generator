@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Routine Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f7f7f7;
+        }
+        .container {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .workout-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .workout-list li {
+            background: #f0f0f0;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Workout Routine Generator</h1>
+        <p>Click the button to generate a random workout routine!</p>
+        <button onclick="generateWorkout()">Generate Routine</button>
+        <ul class="workout-list" id="workout-list"></ul>
+    </div>
+
+    <script>
+        const workouts = [
+            "Push-ups (3 sets of 15)",
+            "Squats (3 sets of 20)",
+            "Lunges (3 sets of 12 each leg)",
+            "Plank (hold for 1 minute)",
+            "Burpees (3 sets of 10)",
+            "Jumping Jacks (3 sets of 25)",
+            "Sit-ups (3 sets of 20)",
+            "Mountain Climbers (3 sets of 30 seconds)",
+            "Bicep Curls (3 sets of 15)",
+            "Tricep Dips (3 sets of 15)"
+        ];
+
+        function generateWorkout() {
+            const workoutList = document.getElementById("workout-list");
+            workoutList.innerHTML = ""; // Clear previous workouts
+
+            // Randomly select 5 workouts
+            const selectedWorkouts = [];
+            while (selectedWorkouts.length < 5) {
+                const randomWorkout = workouts[Math.floor(Math.random() * workouts.length)];
+                if (!selectedWorkouts.includes(randomWorkout)) {
+                    selectedWorkouts.push(randomWorkout);
+                }
+            }
+
+            // Display the workouts
+            selectedWorkouts.forEach(workout => {
+                const li = document.createElement("li");
+                li.textContent = workout;
+                workoutList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
